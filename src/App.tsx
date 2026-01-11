@@ -6,6 +6,7 @@ import FormPage from './pages/FormPage';
 import Analytics from './pages/Analytics';
 import SentEmails from './pages/SentEmails';
 import Inbox from './pages/Inbox';
+import NoEmail from './pages/NoEmail';
 
 /**
  * Main App Component
@@ -22,6 +23,7 @@ function App() {
           <Route path="/leads" element={<Leads />} />
           <Route path="/sent" element={<SentEmails />} />
           <Route path="/inbox" element={<Inbox />} />
+          <Route path="/no-email" element={<NoEmail />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
