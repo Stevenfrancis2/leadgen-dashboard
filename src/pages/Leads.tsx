@@ -108,6 +108,16 @@ const Leads = () => {
 
   const handleSendEmail = async (lead: Lead, subject: string, htmlBody: string) => {
     try {
+      // CRITICAL: Prevent re-contacting leads that were already contacted
+      if (lead.lead_status === 'contacted' || lead.draft_status === 'sent') {
+        const confirmRecontact = window.confirm(
+          `⚠️ WARNING: This lead was already contacted on ${lead.draft_sent_at ? new Date(lead.draft_sent_at).toLocaleDateString() : 'a previous date'}.\n\nAre you SURE you want to send another email to ${lead.Email}?`
+        );
+        if (!confirmRecontact) {
+          return;
+        }
+      }
+
       if (!N8N_WEBHOOK_URL) {
         throw new Error('n8n webhook URL not configured');
       }
