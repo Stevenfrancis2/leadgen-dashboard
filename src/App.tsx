@@ -4,6 +4,8 @@ import Dashboard from './pages/Dashboard';
 import Leads from './pages/Leads';
 import FormPage from './pages/FormPage';
 import Analytics from './pages/Analytics';
+import SentEmails from './pages/SentEmails';
+import Inbox from './pages/Inbox';
 
 /**
  * Main App Component
@@ -18,6 +20,8 @@ function App() {
           <Route path="/" element={<FormPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/leads" element={<Leads />} />
+          <Route path="/sent" element={<SentEmails />} />
+          <Route path="/inbox" element={<Inbox />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, Plus, BarChart3, Zap } from 'lucide-react';
+import { LayoutDashboard, Users, Plus, BarChart3, Zap, Send, Inbox as InboxIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
@@ -8,6 +8,8 @@ const Navbar = () => {
   const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { path: '/leads', label: 'Leads', icon: Users },
+    { path: '/sent', label: 'Sent', icon: Send },
+    { path: '/inbox', label: 'Inbox', icon: InboxIcon },
     { path: '/', label: 'New Lead', icon: Plus },
     { path: '/analytics', label: 'Analytics', icon: BarChart3 },
   ];
