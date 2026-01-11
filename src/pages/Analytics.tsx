@@ -4,6 +4,7 @@ import { Lead } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 import { TrendingUp, Activity } from 'lucide-react';
 import { format, subDays, startOfDay } from 'date-fns';
+import { motion } from 'framer-motion';
 
 const Analytics = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
