@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Lead } from '../types';
-import { Search, Filter, Mail, Eye, Trash2, CheckCircle2, Clock, Send, Phone, Globe, MapPin, Briefcase, User, ExternalLink } from 'lucide-react';
+import { Search, Filter, Mail, Eye, Trash2, CheckCircle2, Clock, Send, Phone, Globe, MapPin, Briefcase, ExternalLink } from 'lucide-react';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import DraftModal from '../components/DraftModal';

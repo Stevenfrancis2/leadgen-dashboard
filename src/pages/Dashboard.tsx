@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { Lead, LeadStatistics } from '../types';
 import {
@@ -10,6 +11,8 @@ import {
   CheckCircle2,
   AlertCircle,
   TrendingUp,
+  Plus,
+  Zap,
 } from 'lucide-react';
 import { startOfWeek, startOfMonth } from 'date-fns';
 import DraftCard from '../components/DraftCard';
@@ -17,6 +20,7 @@ import DraftModal from '../components/DraftModal';
 import { motion } from 'framer-motion';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [statistics, setStatistics] = useState<LeadStatistics>({
     total: 0,
     pendingReview: 0,
@@ -314,8 +318,24 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold gradient-text mb-2">RatioX Lead Intelligence</h1>
-          <p className="text-slate-400">Review and approve AI-drafted emails before sending</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold gradient-text mb-2">RatioX Lead Intelligence</h1>
+              <p className="text-slate-400">Review and approve AI-drafted emails before sending</p>
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/')}
+              className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white rounded-2xl hover:from-cyan-600 hover:via-blue-600 hover:to-purple-700 transition-all text-lg font-bold shadow-2xl shadow-cyan-500/50 group"
+            >
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all">
+                <Zap className="text-white" size={24} />
+              </div>
+              <span>Generate New Leads</span>
+              <Plus size={24} />
+            </motion.button>
+          </div>
         </motion.div>
 
         {/* Toast Notification */}
