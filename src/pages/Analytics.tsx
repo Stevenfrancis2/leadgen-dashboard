@@ -88,11 +88,11 @@ const Analytics = () => {
 
   if (!isSupabaseConfigured) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 flex items-center justify-center p-6">
-        <div className="max-w-2xl bg-white rounded-2xl shadow-2xl p-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Supabase Setup Required</h2>
-          <p className="text-gray-600 mb-6">
-            Please configure Supabase to view analytics. Check the <code className="bg-gray-100 px-2 py-1 rounded">SUPABASE_SETUP.md</code> file for instructions.
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6">
+        <div className="max-w-2xl glass rounded-2xl shadow-2xl p-8 text-center border border-slate-700/50">
+          <h2 className="text-3xl font-bold text-slate-100 mb-4">Supabase Setup Required</h2>
+          <p className="text-slate-400 mb-6">
+            Please configure Supabase to view analytics. Check the <code className="bg-slate-800 px-2 py-1 rounded text-cyan-400">SUPABASE_SETUP.md</code> file for instructions.
           </p>
         </div>
       </div>
@@ -101,28 +101,41 @@ const Analytics = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-500"></div>
+      <div className="flex items-center justify-center h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          className="w-16 h-16 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full"
+        />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 pt-24">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Analytics</h1>
-          <p className="text-gray-600">Insights and trends from your lead data</p>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8"
+        >
+          <h1 className="text-4xl font-bold gradient-text mb-2">Analytics Dashboard</h1>
+          <p className="text-slate-400">Insights and trends from your lead data</p>
+        </motion.div>
 
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Status Distribution */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="glass rounded-2xl border border-slate-700/50 p-6"
+          >
             <div className="flex items-center mb-4">
-              <Activity className="text-purple-600 mr-2" size={24} />
-              <h2 className="text-xl font-bold text-gray-800">Lead Status Distribution</h2>
+              <Activity className="text-purple-400 mr-2" size={24} />
+              <h2 className="text-xl font-bold text-slate-100">Lead Status Distribution</h2>
             </div>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
@@ -143,13 +156,18 @@ const Analytics = () => {
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>
-          </div>
+          </motion.div>
 
           {/* Leads Over Time */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="glass rounded-2xl border border-slate-700/50 p-6"
+          >
             <div className="flex items-center mb-4">
-              <TrendingUp className="text-blue-600 mr-2" size={24} />
-              <h2 className="text-xl font-bold text-gray-800">Leads Over Time (14 Days)</h2>
+              <TrendingUp className="text-cyan-400 mr-2" size={24} />
+              <h2 className="text-xl font-bold text-slate-100">Leads Over Time (14 Days)</h2>
             </div>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={timeData}>
@@ -158,18 +176,23 @@ const Analytics = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="leads" stroke="#8B5CF6" strokeWidth={2} />
+                <Line type="monotone" dataKey="leads" stroke="#06B6D4" strokeWidth={3} />
               </LineChart>
             </ResponsiveContainer>
-          </div>
+          </motion.div>
         </div>
 
         {/* Full Width Charts */}
         <div className="space-y-6">
           {/* Leads by Country */}
           {countryData.length > 0 && (
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-xl font-bold text-gray-800 mb-4">Top Countries</h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="glass rounded-2xl border border-slate-700/50 p-6"
+            >
+              <h2 className="text-xl font-bold text-slate-100 mb-4">Top Countries</h2>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={countryData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -177,15 +200,20 @@ const Analytics = () => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="value" fill="#3B82F6" name="Leads" />
+                  <Bar dataKey="value" fill="#06B6D4" name="Leads" />
                 </BarChart>
               </ResponsiveContainer>
-            </div>
+            </motion.div>
           )}
 
           {/* Conversion Funnel */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Conversion Funnel</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="glass rounded-2xl border border-slate-700/50 p-6"
+          >
+            <h2 className="text-xl font-bold text-slate-100 mb-4">Conversion Funnel</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={funnelData} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" />
@@ -196,48 +224,68 @@ const Analytics = () => {
                 <Bar dataKey="value" fill="#10B981" name="Leads" />
               </BarChart>
             </ResponsiveContainer>
-          </div>
+          </motion.div>
         </div>
 
         {/* Summary Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="text-gray-600 font-medium mb-2">Emails Sent</h3>
-            <p className="text-3xl font-bold text-purple-600">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="glass rounded-2xl border border-slate-700/50 p-6 hover:border-purple-500/50 transition-all"
+          >
+            <h3 className="text-slate-400 font-medium mb-2">Emails Sent</h3>
+            <p className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               {leads.filter(l => l.draft_status === 'sent').length}
             </p>
-            <p className="text-sm text-gray-500 mt-1">Total outreach emails</p>
-          </div>
+            <p className="text-sm text-slate-500 mt-1">Total outreach emails</p>
+          </motion.div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="text-gray-600 font-medium mb-2">Reply Rate</h3>
-            <p className="text-3xl font-bold text-blue-600">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="glass rounded-2xl border border-slate-700/50 p-6 hover:border-cyan-500/50 transition-all"
+          >
+            <h3 className="text-slate-400 font-medium mb-2">Reply Rate</h3>
+            <p className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               {leads.filter(l => l.draft_status === 'sent').length > 0
                 ? ((leads.filter(l => l.has_replied).length /
                     leads.filter(l => l.draft_status === 'sent').length) * 100).toFixed(1)
                 : 0}%
             </p>
-            <p className="text-sm text-gray-500 mt-1">Leads who replied</p>
-          </div>
+            <p className="text-sm text-slate-500 mt-1">Leads who replied</p>
+          </motion.div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="text-gray-600 font-medium mb-2">Total Replies</h3>
-            <p className="text-3xl font-bold text-green-600">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="glass rounded-2xl border border-slate-700/50 p-6 hover:border-emerald-500/50 transition-all"
+          >
+            <h3 className="text-slate-400 font-medium mb-2">Total Replies</h3>
+            <p className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
               {leads.filter(l => l.has_replied).length}
             </p>
-            <p className="text-sm text-gray-500 mt-1">Leads engaged</p>
-          </div>
+            <p className="text-sm text-slate-500 mt-1">Leads engaged</p>
+          </motion.div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h3 className="text-gray-600 font-medium mb-2">Meeting Rate</h3>
-            <p className="text-3xl font-bold text-orange-600">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="glass rounded-2xl border border-slate-700/50 p-6 hover:border-orange-500/50 transition-all"
+          >
+            <h3 className="text-slate-400 font-medium mb-2">Meeting Rate</h3>
+            <p className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
               {leads.filter(l => l.has_replied).length > 0
                 ? ((leads.filter(l => l.appointment_at).length /
                     leads.filter(l => l.has_replied).length) * 100).toFixed(1)
                 : 0}%
             </p>
-            <p className="text-sm text-gray-500 mt-1">Replies to meetings</p>
-          </div>
+            <p className="text-sm text-slate-500 mt-1">Replies to meetings</p>
+          </motion.div>
         </div>
       </div>
     </div>
